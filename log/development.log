@@ -1,0 +1,243 @@
+  [1m[35m (36.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (133.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (120.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateDoctors (20200303081630)
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateDoctors (20200303081630)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "doctors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "speciality" varchar, "postal_code" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200303081630"]]
+  [1m[35m (83.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePatients (20200303081811)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "patients" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200303081811"]]
+  [1m[35m (106.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAppointements (20200303082037)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "appointements" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "date" datetime, "doctor_id" integer, "patient_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_appointements_on_doctor_id" ON "appointements" ("doctor_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_appointements_on_patient_id" ON "appointements" ("patient_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200303082037"]]
+  [1m[35m (102.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-03-03 08:49:48.231201"], ["updated_at", "2020-03-03 08:49:48.231201"]]
+  [1m[35m (58.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mDoctor Create (3.4ms)[0m  [1m[32mINSERT INTO "doctors" ("first_name", "last_name", "speciality", "postal_code", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Gilbert"], ["last_name", "Grey"], ["speciality", "Cardiologue"], ["postal_code", 123], ["created_at", "2020-03-03 08:59:22.545396"], ["updated_at", "2020-03-03 08:59:22.545396"]]
+  [1m[35m (99.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mDoctor Create (1.9ms)[0m  [1m[32mINSERT INTO "doctors" ("first_name", "last_name", "speciality", "postal_code", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Elisabeth"], ["last_name", "Benet"], ["speciality", "Pediatre"], ["postal_code", 103], ["created_at", "2020-03-03 09:00:23.829448"], ["updated_at", "2020-03-03 09:00:23.829448"]]
+  [1m[35m (131.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPatient Create (1.5ms)[0m  [1m[32mINSERT INTO "patients" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "Zayn"], ["last_name", "Malick"], ["created_at", "2020-03-03 09:06:14.239928"], ["updated_at", "2020-03-03 09:06:14.239928"]]
+  [1m[35m (76.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPatient Create (1.4ms)[0m  [1m[32mINSERT INTO "patients" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "Gwen"], ["last_name", "Scott"], ["created_at", "2020-03-03 10:03:57.694942"], ["updated_at", "2020-03-03 10:03:57.694942"]]
+  [1m[35m (89.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mDoctor Load (0.3ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPatient Load (0.2ms)[0m  [1m[34mSELECT "patients".* FROM "patients" WHERE "patients"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mAppointement Create (5.8ms)[0m  [1m[32mINSERT INTO "appointements" ("doctor_id", "patient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["doctor_id", 1], ["patient_id", 2], ["created_at", "2020-03-03 10:25:15.810977"], ["updated_at", "2020-03-03 10:25:15.810977"]]
+  [1m[35m (92.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mDoctor Load (0.2ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPatient Load (0.1ms)[0m  [1m[34mSELECT "patients".* FROM "patients" WHERE "patients"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAppointement Create (1.9ms)[0m  [1m[32mINSERT INTO "appointements" ("doctor_id", "patient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["doctor_id", 1], ["patient_id", 1], ["created_at", "2020-03-03 10:25:42.957339"], ["updated_at", "2020-03-03 10:25:42.957339"]]
+  [1m[35m (153.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mAppointement Load (0.3ms)[0m  [1m[34mSELECT "appointements".* FROM "appointements"[0m
+  [1m[36mDoctor Load (0.3ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors"[0m
+  [1m[36mPatient Load (0.3ms)[0m  [1m[34mSELECT "patients".* FROM "patients"[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mDoctor Create (1.2ms)[0m  [1m[32mINSERT INTO "doctors" ("first_name", "last_name", "speciality", "postal_code", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Alex"], ["last_name", "Karev"], ["speciality", "Generalist"], ["postal_code", 103], ["created_at", "2020-03-03 10:47:08.069811"], ["updated_at", "2020-03-03 10:47:08.069811"]]
+  [1m[35m (48.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mDoctor Create (0.5ms)[0m  [1m[32mINSERT INTO "doctors" ("first_name", "last_name", "speciality", "postal_code", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Dereck"], ["last_name", "Sheperd"], ["speciality", "Chirurgien"], ["postal_code", 120], ["created_at", "2020-03-03 10:47:08.140894"], ["updated_at", "2020-03-03 10:47:08.140894"]]
+  [1m[35m (46.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mDoctor Create (1.0ms)[0m  [1m[32mINSERT INTO "doctors" ("first_name", "last_name", "speciality", "postal_code", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Meredith"], ["last_name", "Grey"], ["speciality", "Gyneco"], ["postal_code", 122], ["created_at", "2020-03-03 10:47:08.197486"], ["updated_at", "2020-03-03 10:47:08.197486"]]
+  [1m[35m (214.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mDoctor Create (1.4ms)[0m  [1m[32mINSERT INTO "doctors" ("first_name", "last_name", "speciality", "postal_code", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Christina"], ["last_name", "yang"], ["speciality", "Dentist"], ["postal_code", 110], ["created_at", "2020-03-03 10:47:08.425129"], ["updated_at", "2020-03-03 10:47:08.425129"]]
+  [1m[35m (82.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mDoctor Create (1.8ms)[0m  [1m[32mINSERT INTO "doctors" ("first_name", "last_name", "speciality", "postal_code", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Izzie"], ["last_name", "Steven"], ["speciality", "Ophtamologue"], ["postal_code", 101], ["created_at", "2020-03-03 10:47:08.519797"], ["updated_at", "2020-03-03 10:47:08.519797"]]
+  [1m[35m (56.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mDoctor Create (0.9ms)[0m  [1m[32mINSERT INTO "doctors" ("first_name", "last_name", "speciality", "postal_code", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Callie"], ["last_name", "Torres"], ["speciality", "Dermatologue"], ["postal_code", 124], ["created_at", "2020-03-03 10:47:08.591879"], ["updated_at", "2020-03-03 10:47:08.591879"]]
+  [1m[35m (55.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mDoctor Create (0.9ms)[0m  [1m[32mINSERT INTO "doctors" ("first_name", "last_name", "speciality", "postal_code", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Owen"], ["last_name", "Hunt"], ["speciality", "Psychatre"], ["postal_code", 121], ["created_at", "2020-03-03 10:47:08.670030"], ["updated_at", "2020-03-03 10:47:08.670030"]]
+  [1m[35m (79.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mDoctor Create (0.4ms)[0m  [1m[32mINSERT INTO "doctors" ("first_name", "last_name", "speciality", "postal_code", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Miranda"], ["last_name", "Bailey"], ["speciality", "cardio"], ["postal_code", 102], ["created_at", "2020-03-03 10:47:08.770487"], ["updated_at", "2020-03-03 10:47:08.770487"]]
+  [1m[35m (52.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mDoctor Load (0.3ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors"[0m
+  [1m[36mPatient Load (0.3ms)[0m  [1m[34mSELECT "patients".* FROM "patients"[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPatient Create (0.4ms)[0m  [1m[32mINSERT INTO "patients" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "Blair"], ["last_name", "Waldorf"], ["created_at", "2020-03-03 10:55:12.603959"], ["updated_at", "2020-03-03 10:55:12.603959"]]
+  [1m[35m (106.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPatient Create (0.9ms)[0m  [1m[32mINSERT INTO "patients" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "Chuck"], ["last_name", "Bass"], ["created_at", "2020-03-03 10:55:12.719727"], ["updated_at", "2020-03-03 10:55:12.719727"]]
+  [1m[35m (65.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPatient Create (0.5ms)[0m  [1m[32mINSERT INTO "patients" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "Serena"], ["last_name", "Van Der Woodsen"], ["created_at", "2020-03-03 10:55:12.810361"], ["updated_at", "2020-03-03 10:55:12.810361"]]
+  [1m[35m (65.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPatient Create (1.0ms)[0m  [1m[32mINSERT INTO "patients" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "Nate"], ["last_name", "Archibald"], ["created_at", "2020-03-03 10:55:12.888082"], ["updated_at", "2020-03-03 10:55:12.888082"]]
+  [1m[35m (55.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPatient Create (0.5ms)[0m  [1m[32mINSERT INTO "patients" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "Dan"], ["last_name", "Humprey"], ["created_at", "2020-03-03 10:55:12.953338"], ["updated_at", "2020-03-03 10:55:12.953338"]]
+  [1m[35m (54.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPatient Create (3.1ms)[0m  [1m[32mINSERT INTO "patients" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "Georgina"], ["last_name", "Sparks"], ["created_at", "2020-03-03 10:55:13.020157"], ["updated_at", "2020-03-03 10:55:13.020157"]]
+  [1m[35m (58.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPatient Create (1.1ms)[0m  [1m[32mINSERT INTO "patients" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "Ivy"], ["last_name", "Dickens"], ["created_at", "2020-03-03 10:55:13.100514"], ["updated_at", "2020-03-03 10:55:13.100514"]]
+  [1m[35m (63.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPatient Create (0.8ms)[0m  [1m[32mINSERT INTO "patients" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "Vanessa"], ["last_name", "Abrams"], ["created_at", "2020-03-03 10:55:13.192854"], ["updated_at", "2020-03-03 10:55:13.192854"]]
+  [1m[35m (81.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mPatient Load (1.3ms)[0m  [1m[34mSELECT "patients".* FROM "patients"[0m
+  [1m[36mAppointement Load (0.3ms)[0m  [1m[34mSELECT "appointements".* FROM "appointements"[0m
+  [1m[36mAppointement Load (0.4ms)[0m  [1m[34mSELECT "appointements".* FROM "appointements" WHERE "appointements"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAppointement Load (0.2ms)[0m  [1m[34mSELECT "appointements".* FROM "appointements" WHERE "appointements"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  [1m[36mAppointement Load (0.2ms)[0m  [1m[34mSELECT "appointements".* FROM "appointements" WHERE "appointements"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mDoctor Load (0.2ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPatient Load (0.3ms)[0m  [1m[34mSELECT "patients".* FROM "patients" WHERE "patients"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mAppointement Update (0.9ms)[0m  [1m[33mUPDATE "appointements" SET "date" = ?, "updated_at" = ? WHERE "appointements"."id" = ?[0m  [["date", "2020-03-03 11:08:54.609298"], ["updated_at", "2020-03-03 11:09:00.756350"], ["id", 1]]
+  [1m[35m (80.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mAppointement Load (0.2ms)[0m  [1m[34mSELECT "appointements".* FROM "appointements" WHERE "appointements"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mDoctor Load (0.1ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPatient Load (0.1ms)[0m  [1m[34mSELECT "patients".* FROM "patients" WHERE "patients"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAppointement Update (1.4ms)[0m  [1m[33mUPDATE "appointements" SET "date" = ?, "updated_at" = ? WHERE "appointements"."id" = ?[0m  [["date", "2020-03-03 11:11:03.816642"], ["updated_at", "2020-03-03 11:11:06.710602"], ["id", 2]]
+  [1m[35m (81.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mAppointement Load (0.3ms)[0m  [1m[34mSELECT "appointements".* FROM "appointements"[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mDoctor Load (0.4ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPatient Load (0.2ms)[0m  [1m[34mSELECT "patients".* FROM "patients" WHERE "patients"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAppointement Create (0.6ms)[0m  [1m[32mINSERT INTO "appointements" ("date", "doctor_id", "patient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date", "2020-03-03 11:30:41.911831"], ["doctor_id", 2], ["patient_id", 3], ["created_at", "2020-03-03 11:30:41.956010"], ["updated_at", "2020-03-03 11:30:41.956010"]]
+  [1m[35m (89.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mAppointement Load (0.3ms)[0m  [1m[34mSELECT "appointements".* FROM "appointements"[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mDoctor Load (0.3ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPatient Load (0.3ms)[0m  [1m[34mSELECT "patients".* FROM "patients" WHERE "patients"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAppointement Create (0.6ms)[0m  [1m[32mINSERT INTO "appointements" ("date", "doctor_id", "patient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date", "2020-03-03 11:37:15.754925"], ["doctor_id", 2], ["patient_id", 4], ["created_at", "2020-03-03 11:37:15.788309"], ["updated_at", "2020-03-03 11:37:15.788309"]]
+  [1m[35m (96.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mDoctor Load (0.3ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mPatient Load (0.2ms)[0m  [1m[34mSELECT "patients".* FROM "patients" WHERE "patients"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAppointement Create (1.2ms)[0m  [1m[32mINSERT INTO "appointements" ("date", "doctor_id", "patient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date", "2020-03-03 11:37:54.875161"], ["doctor_id", 3], ["patient_id", 5], ["created_at", "2020-03-03 11:37:54.908551"], ["updated_at", "2020-03-03 11:37:54.908551"]]
+  [1m[35m (117.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mDoctor Load (0.3ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mPatient Load (0.2ms)[0m  [1m[34mSELECT "patients".* FROM "patients" WHERE "patients"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAppointement Create (1.0ms)[0m  [1m[32mINSERT INTO "appointements" ("date", "doctor_id", "patient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date", "2020-03-03 11:38:17.161438"], ["doctor_id", 4], ["patient_id", 6], ["created_at", "2020-03-03 11:38:17.199446"], ["updated_at", "2020-03-03 11:38:17.199446"]]
+  [1m[35m (116.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mDoctor Load (0.3ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mPatient Load (0.2ms)[0m  [1m[34mSELECT "patients".* FROM "patients" WHERE "patients"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAppointement Create (0.4ms)[0m  [1m[32mINSERT INTO "appointements" ("date", "doctor_id", "patient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date", "2020-03-03 11:38:46.121067"], ["doctor_id", 5], ["patient_id", 7], ["created_at", "2020-03-03 11:38:46.153281"], ["updated_at", "2020-03-03 11:38:46.153281"]]
+  [1m[35m (93.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mDoctor Load (0.3ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mPatient Load (0.2ms)[0m  [1m[34mSELECT "patients".* FROM "patients" WHERE "patients"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAppointement Create (0.4ms)[0m  [1m[32mINSERT INTO "appointements" ("date", "doctor_id", "patient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date", "2020-03-03 11:39:07.504988"], ["doctor_id", 6], ["patient_id", 8], ["created_at", "2020-03-03 11:39:07.547506"], ["updated_at", "2020-03-03 11:39:07.547506"]]
+  [1m[35m (113.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mDoctor Load (0.3ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mPatient Load (0.2ms)[0m  [1m[34mSELECT "patients".* FROM "patients" WHERE "patients"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAppointement Create (1.0ms)[0m  [1m[32mINSERT INTO "appointements" ("date", "doctor_id", "patient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date", "2020-03-03 11:39:28.501083"], ["doctor_id", 7], ["patient_id", 9], ["created_at", "2020-03-03 11:39:28.533646"], ["updated_at", "2020-03-03 11:39:28.533646"]]
+  [1m[35m (103.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mDoctor Load (0.3ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mPatient Load (0.2ms)[0m  [1m[34mSELECT "patients".* FROM "patients" WHERE "patients"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAppointement Create (0.4ms)[0m  [1m[32mINSERT INTO "appointements" ("date", "doctor_id", "patient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date", "2020-03-03 11:39:55.965523"], ["doctor_id", 8], ["patient_id", 3], ["created_at", "2020-03-03 11:39:55.997731"], ["updated_at", "2020-03-03 11:39:55.997731"]]
+  [1m[35m (93.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mDoctor Load (0.3ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mPatient Load (0.2ms)[0m  [1m[34mSELECT "patients".* FROM "patients" WHERE "patients"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAppointement Create (0.9ms)[0m  [1m[32mINSERT INTO "appointements" ("date", "doctor_id", "patient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date", "2020-03-03 11:40:18.773372"], ["doctor_id", 9], ["patient_id", 5], ["created_at", "2020-03-03 11:40:18.809016"], ["updated_at", "2020-03-03 11:40:18.809016"]]
+  [1m[35m (106.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mDoctor Load (0.5ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mPatient Load (0.2ms)[0m  [1m[34mSELECT "patients".* FROM "patients" WHERE "patients"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAppointement Create (0.4ms)[0m  [1m[32mINSERT INTO "appointements" ("date", "doctor_id", "patient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date", "2020-03-03 11:40:43.139078"], ["doctor_id", 10], ["patient_id", 9], ["created_at", "2020-03-03 11:40:43.171654"], ["updated_at", "2020-03-03 11:40:43.171654"]]
+  [1m[35m (118.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mDoctor Load (0.2ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mPatient Load (0.2ms)[0m  [1m[34mSELECT "patients".* FROM "patients" WHERE "patients"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAppointement Create (0.5ms)[0m  [1m[32mINSERT INTO "appointements" ("date", "doctor_id", "patient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date", "2020-03-03 11:41:10.325378"], ["doctor_id", 6], ["patient_id", 6], ["created_at", "2020-03-03 11:41:10.367511"], ["updated_at", "2020-03-03 11:41:10.367511"]]
+  [1m[35m (115.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mDoctor Load (0.3ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mPatient Load (0.2ms)[0m  [1m[34mSELECT "patients".* FROM "patients" WHERE "patients"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAppointement Create (0.5ms)[0m  [1m[32mINSERT INTO "appointements" ("date", "doctor_id", "patient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date", "2020-03-03 11:41:47.666547"], ["doctor_id", 4], ["patient_id", 8], ["created_at", "2020-03-03 11:41:47.698341"], ["updated_at", "2020-03-03 11:41:47.698341"]]
+  [1m[35m (105.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mAppointement Load (0.3ms)[0m  [1m[34mSELECT "appointements".* FROM "appointements"[0m
+  [1m[36mPatient Load (0.3ms)[0m  [1m[34mSELECT "patients".* FROM "patients"[0m
+  [1m[36mAppointement Load (0.4ms)[0m  [1m[34mSELECT "appointements".* FROM "appointements" WHERE "appointements"."patient_id" = ? LIMIT ?[0m  [["patient_id", 1], ["LIMIT", 1]]
+  [1m[36mAppointement Load (0.3ms)[0m  [1m[34mSELECT "appointements".* FROM "appointements" WHERE "appointements"."doctor_id" = ? LIMIT ?[0m  [["doctor_id", 1], ["LIMIT", 1]]
+  [1m[36mAppointement Load (0.2ms)[0m  [1m[34mSELECT "appointements".* FROM "appointements" WHERE "appointements"."doctor_id" = ? LIMIT ?[0m  [["doctor_id", 1], ["LIMIT", 1]]
+  [1m[36mAppointement Load (0.2ms)[0m  [1m[34mSELECT "appointements".* FROM "appointements" WHERE "appointements"."doctor_id" = ? LIMIT ?[0m  [["doctor_id", 1], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mDoctor Load (0.4ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors"[0m
